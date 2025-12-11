@@ -1,0 +1,446 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  font-size: 15px;
+}
+
+.marquee5 {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 0;
+  width: 85%;
+  margin: 20px auto;
+  background: rgba(0,0,0,0.9);
+  border-radius: 12px;
+  box-shadow: 0 0 15px #000;
+}
+
+.marquee5 h1 {
+  display: inline-block;
+  padding-left: 50%;
+  animation: marquee5 4s linear infinite, flicker 0.3s infinite;
+  font-size: 3em;
+  color: #fff;
+  text-shadow: 0 0 5px #000, 0 0 10px #111;
+}
+
+@keyframes marquee5 {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes flicker {
+  0%, 20%, 40%, 60%, 80%, 100% { opacity: 1; }
+  10%, 30%, 50%, 70%, 90% { opacity: 0.3; }
+}
+
+#demo {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 6px;
+  opacity: 0.65;
+  position: fixed;
+  bottom: 5px;    
+  right: 20px;      
+  z-index: 99999;
+  backdrop-filter: blur(4px);
+}
+
+#musicNotice {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  z-index: 99999;
+  transition: all 1s ease;
+  cursor: default;
+}
+
+#musicNotice.hide {
+  top: 20px;
+  left: 20px;
+  transform: translate(0,0);
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 0;
+}
+
+#musicNotice.hide::after {
+  content: "🎵";
+  font-size: 25px;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* HEADER */
+header {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  padding: 70px 0 35px 0;  /* extra top space */ 
+  margin-top: 70px; /* pushes header below navbar */
+}
+
+/*para-text*/
+.para-text {
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Lato, sans-serif;
+  font-size: 25px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.parallax {
+  position: relative;
+}
+
+/* NAVBAR */
+nav {
+  background-color: rgba(229, 229, 229, 0.10);
+  text-align: center;
+  padding: 12px 10px;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+nav a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* SECTION */
+section {
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #090909;
+  color: #fff;
+  overflow-x: hidden;  /* prevents horizontal scrolling */
+  box-sizing: border-box;
+}
+
+section p {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 900px; /* keeps text nicely centered and not too wide */
+  line-height: 1.6;
+}
+
+section h1 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+/* ORDERED LIST */
+ul.centered-list {
+  display: table;      
+  margin: 0 auto;    
+  padding-left: 40px; 
+  line-height: 1.6;   
+  color: white;    
+  list-style-position: inside;
+}
+
+/* TABLE */
+.explore-table {
+  width: 50%;        
+  margin: 0 auto;         
+  border-collapse: collapse;
+  color: white;
+  font-size: 15px;
+  background-color: black; 
+}
+
+.explore-table th, .explore-table td {
+  border: 2px solid #fff;
+  padding: 12px 15px;
+  text-align: left;    
+}
+
+.explore-table th {
+  background-color: #ababab;
+  font-size: 20px;
+  color: black;
+}
+
+.explore-table tr:hover {
+  background-color: #515151;
+}
+
+/* ✅ PARALLAX SECTION */
+.parallax {
+  background-image: url("homeparallax1.jpg");
+  min-height: 390px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  background-image: url("homeparallax2.jpg");
+  min-height: 390px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* PARALLAX 3 */
+.parallax3 {
+  background-image: url("homeparallax3.jpg");
+  min-height: 390px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* TEXT INSIDE */
+.para-text, .para-text2, .para-text3 {
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Lato, sans-serif;
+  font-size: 35px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  white-space: nowrap;  
+  width: auto;        
+  max-width: 100%;      
+  padding: 0;          
+  margin: 0;            
+}
+
+/* SOCIAL MEDIA */
+.social {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.social h4 {
+  color: white;
+  font-family: Arial, sans-serif;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.social a {
+  margin: 0 10px;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.social a:hover {
+  transform: scale(1.2);
+}
+
+/* FOOTER */
+footer {
+  background-color: rgba(229, 229, 229, 0.10);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-family: courier;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body style="background-color: #000000;">
+<!-- MUSIC NOTICE -->
+<div id="musicNotice">
+  <p>🎵 This page has background music</p>
+</div>
+
+<header style="padding-top: 0;">
+
+<nav>
+    <a href="index.html" target="_self">HOME</a>
+    <a href="biodata.html" target="_self">BIODATA</a>
+    <a href="experience.html" target="_self">EXPERIENCE</a>
+    <a href="education.html" target="_self">EDUCATION</a>
+    <a href="interests.html" target="_self">INTEREST</a>
+    <a href="contact.html" target="_self">CONTACT</a>
+  </nav>
+
+<div class="marquee5">
+<h1>SHAH'S RESUME</h1>
+</div>
+</header>
+
+<p id="demo"></p>
+
+<script>
+function updateTime() {
+  const malaysiaTime = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Kuala_Lumpur"
+  });
+  document.getElementById("demo").innerHTML = malaysiaTime + " (MYT)";
+}
+
+setInterval(updateTime, 1000);
+
+updateTime();
+
+</script>
+
+<section>
+  <h1>Welcome to My Resume Website</h1>
+  <p>Thank you for visiting my online resume. This website is designed to introduce myself in a clear and professional way, while also showing the journey that has shaped who I am today. Through this platform, you can explore my background, education, experiences, interests, and the achievements that represent my growth over time.</p>
+</section>
+
+<div class="parallax">
+  <div class="para-text">
+    <h1>WHO I AM</h1>
+  </div>
+</div>
+
+<section>
+  <p>I am someone who believes in continuous learning, personal development, and staying committed to self-improvement. Every experience — no matter how small — teaches something meaningful. My interest in Information Management motivates me to explore new ideas, gain knowledge, and apply what I learn to real-life situations.</p>
+</section>
+
+<div class="parallax2">
+  <div class="para-text2">
+    <h1>WHY I CREATED THIS WEBSITE</h1>
+  </div>
+</div>
+
+<section>
+<p>This resume website is more than just a project. It represents my identity, my goals, and the effort I put into building a better version of myself. My purpose is to:</p>
+<ul class="centered-list">
+  <li>Present my information in a neat and professional way</li>
+  <li>Share my education and experience clearly</li>
+  <li>Highlight my hobbies, interests, and achievements</li>
+  <li>Show my personality beyond just a traditional resume</li>
+  <li>Create opportunities for networking or future collaborations</li>
+</ul>
+<p>Through this website, I aim to grow further, improve my skills, and move confidently into the professional world.</p>
+</section>
+
+<div class="parallax3">
+  <div class="para-text3">
+    <h1>WHAT YOU CAN EXPLORE</h1>
+  </div>
+</div>
+
+<section>
+<p>Each section in the menu guide to a different part of my story:</p>
+  <table class="explore-table">
+    <tr>
+      <th>Section</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Biodata</td>
+      <td>Basic information about who I am</td>
+    </tr>
+    <tr>
+      <td>Experience</td>
+      <td>My work or involvement in projects, tasks, and responsibilities</td>
+    </tr>
+    <tr>
+      <td>Education</td>
+      <td>My academic journey and qualifications</td>
+    </tr>
+    <tr>
+      <td>Hobbies & Interests</td>
+      <td>The activities I love and what keeps me motivated</td>
+    </tr>
+    <tr>
+      <td>Achievements</td>
+      <td>Accomplishments that reflect my dedication and hard work</td>
+    </tr>
+    <tr>
+      <td>Contact</td>
+      <td>Ways to reach me for opportunities or collaboration</td>
+    </tr>
+  </table>
+</section>
+
+<footer>Copyright &copy; SHAHIDUL IMAN</footer>
+
+<audio id="bgm" src="homesong.mp3"></audio>
+
+<script>
+const musicNotice = document.getElementById("musicNotice");
+const bgm = document.getElementById("bgm");
+let isPlaying = false;
+
+// Step 1: Animate popup to top-left after 3 seconds
+setTimeout(() => {
+  musicNotice.classList.add("hide");
+}, 3000);
+
+// Step 2: Click mini button to toggle music
+musicNotice.addEventListener("click", function() {
+  if(musicNotice.classList.contains("hide")) {
+    if(isPlaying) {
+      bgm.pause();
+      isPlaying = false;
+    } else {
+      bgm.volume = 0.5;
+      bgm.play();
+      isPlaying = true;
+    }
+  }
+});
+</script>
+
+</body>
+</html>
